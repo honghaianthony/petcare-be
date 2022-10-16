@@ -13,5 +13,7 @@ git clone https://github.com/honghaianthony/petcare-be.git
 
 npm install
 
+node keygen.js
+
 npm run dev
 ```
