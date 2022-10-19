@@ -19,13 +19,13 @@ function issueJWT(user) {
   const _id = user._id;
   const expiresIn = '1d';
 
-  const fullName = `${user.lastName} ${user.firstName}`;
+  const fullName = `${user.firstName} ${user.lastName} `;
 
   const payload = {
     sub: _id,
     userId: _id,
     role: user.role,
-    username: user.username,
+    userName: user.userName,
     fullName: fullName,
     iat: Date.now(),
   };
