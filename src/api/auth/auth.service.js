@@ -15,6 +15,8 @@ module.exports = {
         phone: req.body.phone,
         email: req.body.email,
         address: req.body.address,
+        avatar:
+          'https://i.pinimg.com/564x/e6/4b/ec/e64beca1b9921925b59671bbf74b9837.jpg',
       });
       const jwt = util.issueJWT(user);
       return {

@@ -27,6 +27,7 @@ function issueJWT(user) {
     role: user.role,
     userName: user.userName,
     fullName: fullName,
+    avatar: user.avatar,
     iat: Date.now(),
   };
 
