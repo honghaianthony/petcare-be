@@ -1,6 +1,5 @@
 const util = require('../../utilities/jwt');
 const model = require('../../models');
-const fs = require('fs');
 
 module.exports = {
   register: async function (req) {
