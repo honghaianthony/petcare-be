@@ -1,73 +1,74 @@
 const models = require('../../models');
 
 module.exports = {
-  getAllProducts: async function () {
+  getAllProductDetails: async function () {
     return new Promise(async function (resolve, reject) {
       try {
-        const products = await models.Product.find().populate('category', [
-          '_id',
-          'icon',
-          'label',
-        ]);
+        const products = await models.ProductDetail.find().populate(
+          'product',
+          'category'
+        );
         resolve(products);
       } catch (err) {
         reject(err);
       }
     });
   },
-  getProductById: async function (req) {
+  getProductDetailById: async function (req) {
     return new Promise(async function (resolve, reject) {
       try {
-        const product = await models.Product.findById(req.query.id).populate(
-          'category',
-          ['_id', 'icon', 'label']
-        );
+        const product = await models.ProductDetail.findById(
+          req.query.id
+        ).populate('product', 'category');
         resolve(product);
       } catch (err) {
         reject(err);
       }
     });
   },
-  createProduct: async function (req) {
+  createProductDetail: async function (req) {
     const data = req.body;
     return new Promise(async function (resolve, reject) {
       try {
+        const product = await models.Product.findOne({
+          _id: data.productId,
+        });
         const category = await models.Category.findOne({
           _id: data.categoryId,
         });
-        const product = await models.Product.create({
-          name: data.name,
-          price: data.price,
-          sale: data.sale,
-          rate: data.rate,
-          numOfProductsSold: data.numOfProductsSold,
-          img: data.img,
+        const productDetail = await models.ProductDetail.create({
           category: category,
+          product: product,
+          description: data.description,
+          numOfRate: data.numOfRate,
+          numOfProductsReview: data.numOfProductsReview,
+          numOfProductsLove: data.numOfProductsLove,
+          numOfProductsInStock: data.numOfProductsInStock,
         });
         resolve({
           errCode: 0,
           errMessage: 'Created Product Successfully',
-          product,
+          productDetail,
         });
       } catch (err) {
         reject(err);
       }
     });
   },
-  updateProduct: async function (req) {
+  updateProductDetail: async function (req) {
     const data = req.body;
     return new Promise(async function (resolve, reject) {
       try {
-        const product = await models.Product.findOneAndUpdate(
+        const product = await models.ProductDetail.findOneAndUpdate(
           {
             _id: req.query.id,
           },
           {
-            name: data.name,
-            price: data.price,
-            sale: data.sale,
-            rate: data.rate,
-            numOfProductsSold: data.numOfProductsSold,
+            description: data.description,
+            numOfRate: data.numOfRate,
+            numOfProductsReview: data.numOfProductsReview,
+            numOfProductsLove: data.numOfProductsLove,
+            numOfProductsInStock: data.numOfProductsInStock,
           }
         );
         resolve({
@@ -80,10 +81,10 @@ module.exports = {
       }
     });
   },
-  deleteProduct: async function (req) {
+  deleteProductDetail: async function (req) {
     return new Promise(async function (resolve, reject) {
       try {
-        const product = await models.Product.findOneAndDelete({
+        const product = await models.ProductDetail.findOneAndDelete({
           _id: req.query.id,
         });
         resolve({
