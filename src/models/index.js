@@ -3,6 +3,7 @@ const Service = require('./Service');
 const Blog = require('./Blog');
 const Product = require('./Product');
 const Category = require('./Category');
+const ProductDetail = require('./ProductDetail');
 
 module.exports = {
   User,
@@ -10,4 +11,5 @@ module.exports = {
   Blog,
   Product,
   Category,
+  ProductDetail,
 };
