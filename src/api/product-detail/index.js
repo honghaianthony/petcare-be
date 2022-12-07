@@ -10,7 +10,7 @@ router.get(
 );
 router.get(
   '/get-product-detail-by-id',
-  productDetailController.getProductDetailsById
+  productDetailController.getProductDetailById
 );
 router.post(
   '/create-product-detail',

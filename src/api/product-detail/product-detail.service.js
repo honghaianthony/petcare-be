@@ -17,9 +17,23 @@ module.exports = {
   getProductDetailById: async function (req) {
     return new Promise(async function (resolve, reject) {
       try {
-        const product = await models.ProductDetail.findById(
-          req.query.id
-        ).populate('product', 'category');
+        const p = await models.ProductDetail.findOne({
+          product: req.query.id,
+        });
+        const product = await models.ProductDetail.findById(p._id).populate(
+          'product',
+          [
+            'name',
+            'price',
+            'img',
+            'sale',
+            'rate',
+            'numOfProductsSold',
+            'category',
+          ]
+        );
+        const c = await models.Category.findById(product.category);
+        product.category = c;
         resolve(product);
       } catch (err) {
         reject(err);
