@@ -89,10 +89,15 @@ module.exports = {
         const product = await models.Product.findOneAndDelete({
           _id: req.query.id,
         });
+        const productDetail = await models.ProductDetail.findOneAndDelete({
+          product: req.query.id,
+        });
+
         resolve({
           errCode: 0,
           errMessage: 'Deleted Product Successfully',
           product,
+          productDetail,
         });
       } catch (err) {
         reject(err);
