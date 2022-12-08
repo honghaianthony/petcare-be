@@ -9,6 +9,7 @@ const productRouter = require('./product');
 const productDetailRouter = require('./product-detail');
 const categoryRouter = require('./category');
 const statusRouter = require('./status');
+const userRouter = require('./user');
 
 router.use(authRouter);
 router.use(loginWithGoogleRouter);
@@ -18,5 +19,6 @@ router.use('/product', productRouter);
 router.use('/product-detail', productDetailRouter);
 router.use('/category', categoryRouter);
 router.use('/status', statusRouter);
+router.use('/user', userRouter);
 
 module.exports = router;
