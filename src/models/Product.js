@@ -8,6 +8,7 @@ const Product = new Schema(
     sale: { type: Number },
     rate: { type: Number },
     numOfProductsSold: { type: String },
+    productStock: { type: String },
     img: { type: String },
     category: {
       type: Schema.Types.ObjectId,
