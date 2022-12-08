@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const Blog = new Schema(
   {
-    title: { type: String, require: true },
-    content: { type: String, require: true },
+    title: { type: String, required: true },
+    content: { type: String, required: true },
     coverImage: { type: String },
     blogImage: { type: String },
-    user: { type: Schema.Types.ObjectId, ref: 'users', require: true },
+    user: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
   {
     timestamps: true,
