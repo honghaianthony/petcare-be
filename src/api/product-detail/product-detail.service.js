@@ -4,15 +4,16 @@ module.exports = {
   getAllProductDetails: async function () {
     return new Promise(async function (resolve, reject) {
       try {
-        const products = await models.ProductDetail.find().populate('product', [
-          'name',
-          'price',
-          'img',
-          'sale',
-          'rate',
-          'numOfProductsSold',
-          'category',
-        ]);
+        const products = await models.ProductDetail.find()
+          .populate('product', [
+            'name',
+            'price',
+            'img',
+            'sale',
+            'rate',
+            'numOfProductsSold',
+          ])
+          .populate('category', ['_id', 'icon', 'label']);
         resolve(products);
       } catch (err) {
         reject(err);
@@ -25,18 +26,16 @@ module.exports = {
         const p = await models.ProductDetail.findOne({
           product: req.query.id,
         });
-        const product = await models.ProductDetail.findById(p._id).populate(
-          'product',
-          [
+        const product = await models.ProductDetail.findById(p._id)
+          .populate('product', [
             'name',
             'price',
             'img',
             'sale',
             'rate',
             'numOfProductsSold',
-            'category',
-          ]
-        );
+          ])
+          .populate('category', ['_id', 'icon', 'label']);
         const c = await models.Category.findById(product.category);
         product.category = c;
         resolve(product);
