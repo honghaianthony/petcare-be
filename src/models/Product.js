@@ -7,8 +7,8 @@ const Product = new Schema(
     price: { type: String },
     sale: { type: Number },
     rate: { type: Number },
-    numOfProductsSold: { type: Number },
-    numOfProductsInStock: { type: Number },
+    numOfProductsSold: { type: String },
+    numOfProductsInStock: { type: String },
     img: { type: String },
     category: {
       type: Schema.Types.ObjectId,
