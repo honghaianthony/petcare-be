@@ -70,6 +70,7 @@ module.exports = {
             rate: data.rate,
             numOfProductsSold: data.numOfProductsSold,
             numOfProductsInStock: data.numOfProductsInStock,
+            img: data.img,
           }
         );
         resolve({
