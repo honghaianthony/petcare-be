@@ -41,7 +41,7 @@ module.exports = {
           sale: data.sale,
           rate: data.rate,
           numOfProductsSold: data.numOfProductsSold,
-          productStock: data.productStock,
+          numOfProductsInStock: data.numOfProductsInStock,
           img: data.img,
           category: category,
         });
@@ -69,7 +69,7 @@ module.exports = {
             sale: data.sale,
             rate: data.rate,
             numOfProductsSold: data.numOfProductsSold,
-            productStock: data.productStock,
+            numOfProductsInStock: data.numOfProductsInStock,
           }
         );
         resolve({

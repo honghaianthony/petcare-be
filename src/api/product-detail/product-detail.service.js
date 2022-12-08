@@ -4,10 +4,15 @@ module.exports = {
   getAllProductDetails: async function () {
     return new Promise(async function (resolve, reject) {
       try {
-        const products = await models.ProductDetail.find().populate(
-          'product',
-          'category'
-        );
+        const products = await models.ProductDetail.find().populate('product', [
+          'name',
+          'price',
+          'img',
+          'sale',
+          'rate',
+          'numOfProductsSold',
+          'category',
+        ]);
         resolve(products);
       } catch (err) {
         reject(err);
