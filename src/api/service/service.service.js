@@ -4,7 +4,7 @@ module.exports = {
   getAllServices: async function () {
     return new Promise(async function (resolve, reject) {
       try {
-        const services = await models.Service.findAll();
+        const services = await models.Service.find();
         resolve(services);
       } catch (error) {
         reject(error);
@@ -37,7 +37,9 @@ module.exports = {
   deleteService: async function (req) {
     return new Promise(async function (resolve, reject) {
       try {
-        const service = await models.Service.findOneAndDelete(req.query.id);
+        const service = await models.Service.findOneAndDelete({
+          _id: req.query.id,
+        });
         resolve(service, {
           errCode: 0,
           errMessage: 'Deleted service Successfully',
