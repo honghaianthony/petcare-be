@@ -60,33 +60,25 @@ module.exports = {
     });
   },
   updateUserInfo: function (req) {
+    const data = req.body;
     return new Promise(async function (resolve, reject) {
       try {
-        const userId = req.user.id;
-        const { firstName, lastName, phone, email, address, avatar } = req.body;
-        const user = await models.User.findOne({ _id: userId });
-        const checkEmail = await models.User.findOne({ email });
-
-        if (user.email === '' && checkEmail === null) {
-          user.email = email;
-        }
-        if (user.email === '' && checkEmail !== null) {
-          resolve({ errCode: 1 });
-          return;
-        }
-        //update user info
-        user.firstName = firstName;
-        user.lastName = lastName;
-        user.phone = phone;
-        user.address = address;
-        user.avatar = avatar;
-
-        user.save();
-
+        const user = await models.User.findOneAndUpdate(
+          {
+            _id: req.query.id,
+          },
+          {
+            email: data.email,
+            phone: data.phone,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            address: data.address,
+          }
+        );
         const jwt = util.issueJWT(user);
         resolve({ errCode: 0, token: jwt.token });
-      } catch (e) {
-        reject(e);
+      } catch (err) {
+        reject(err);
       }
     });
   },
