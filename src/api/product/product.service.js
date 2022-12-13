@@ -41,6 +41,7 @@ module.exports = {
           sale: data.sale,
           rate: data.rate,
           numOfProductsSold: data.numOfProductsSold,
+          numOfProductsInStock: data.numOfProductsInStock,
           img: data.img,
           category: category,
         });
@@ -68,6 +69,8 @@ module.exports = {
             sale: data.sale,
             rate: data.rate,
             numOfProductsSold: data.numOfProductsSold,
+            numOfProductsInStock: data.numOfProductsInStock,
+            img: data.img,
           }
         );
         resolve({
@@ -86,10 +89,15 @@ module.exports = {
         const product = await models.Product.findOneAndDelete({
           _id: req.query.id,
         });
+        const productDetail = await models.ProductDetail.findOneAndDelete({
+          product: req.query.id,
+        });
+
         resolve({
           errCode: 0,
           errMessage: 'Deleted Product Successfully',
           product,
+          productDetail,
         });
       } catch (err) {
         reject(err);

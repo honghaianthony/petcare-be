@@ -4,7 +4,7 @@ module.exports = {
   getAllCategories: async function () {
     return new Promise(async function (resolve, reject) {
       try {
-        const categories = await models.Category.findAll();
+        const categories = await models.Category.find();
         resolve(categories);
       } catch (error) {
         reject(error);

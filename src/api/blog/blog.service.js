@@ -76,6 +76,7 @@ module.exports = {
           {
             title: data.title,
             content: data.content,
+            coverImage: data.coverImage,
           }
         );
         resolve({

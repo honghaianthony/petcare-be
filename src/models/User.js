@@ -3,14 +3,14 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
-    role: { type: Number, require: true },
-    userName: { type: String, require: true, unique: true },
-    password: { type: String, require: true },
-    email: { type: String, require: true, unique: true },
-    phone: { type: String, require: true },
-    firstName: { type: String, require: true },
-    lastName: { type: String, require: true },
-    address: { type: String, require: true },
+    role: { type: Number, required: true },
+    userName: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    address: { type: String, required: true },
     avatar: { type: String },
     googleId: { type: String },
   },

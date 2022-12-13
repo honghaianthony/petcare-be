@@ -6,6 +6,7 @@ const Category = require('./Category');
 const ProductDetail = require('./ProductDetail');
 const Status = require('./Status');
 const History = require('./History');
+const Order = require('./Order');
 
 module.exports = {
   User,
@@ -16,4 +17,5 @@ module.exports = {
   ProductDetail,
   Status,
   History,
+  Order,
 };

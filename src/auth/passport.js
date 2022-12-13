@@ -22,7 +22,7 @@ module.exports = function (passport) {
         .then((user) => {
           if (user) {
             return done(null, {
-              id: user.id,
+              id: user._id,
               role: user.role,
             });
           }
