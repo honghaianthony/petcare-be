@@ -3,6 +3,8 @@ const models = require('../../models');
 const router = express.Router();
 const passport = require('passport');
 
+const orderController = require('./order.controller');
+
 router.post(
   '/create-order',
   passport.authenticate('jwt', { session: false }),
@@ -17,4 +19,14 @@ router.post(
     }
   }
 );
+
+router.get('/get-all-orders', orderController.getAllOrders);
+router.get('/get-order-by-id', orderController.getOrderById);
+
+router.put(
+  '/update-order',
+  passport.authenticate('jwt', { session: false }),
+  orderController.updateOrder
+);
+
 module.exports = router;
