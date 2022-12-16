@@ -16,6 +16,7 @@ module.exports = {
         address: req.body.address,
         avatar:
           'https://i.pinimg.com/564x/e6/4b/ec/e64beca1b9921925b59671bbf74b9837.jpg',
+        carts: [],
       });
       const jwt = util.issueJWT(user);
       return {

@@ -98,4 +98,67 @@ module.exports = {
       }
     });
   },
+  getCartForUser: async function (req) {
+    return new Promise(async function (resolve, reject) {
+      try {
+        let user = await models.User.findOne({ _id: req.user.id });
+        let res = [];
+
+        for (let i = 0; i < user.carts.length; ++i) {
+          const r = await models.Product.findById(user.carts[i].productId);
+          res.push({
+            _id: user.carts[i]._id,
+            productId: user.carts[i].productId,
+            amount: user.carts[i].amount,
+            name: r.name,
+            price: r.price,
+            sale: r.sale,
+            img: r.img,
+          });
+        }
+        resolve(res);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  },
+  addCartItem: async function (req) {
+    return new Promise(async function (resolve, reject) {
+      try {
+        let user = await models.User.findOne({ _id: req.user.id });
+        for (let i = 0; i < user.carts.length; ++i)
+          if (user.carts[i].productId.toString() === req.body.productId) {
+            user.carts[i].amount += req.body.amount;
+            await user.save();
+            resolve({ errCode: 200 });
+            return;
+          }
+        user.carts.push(req.body);
+        await user.save();
+        resolve({ errCode: 200 });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  },
+  deleteCartItem: async function (req) {
+    return new Promise(async function (resolve, reject) {
+      try {
+        let user = await models.User.findOne({ _id: req.user.id });
+        let arr = [...user.carts];
+        user.carts = [];
+        for (let i = 0; i < arr.length; ++i) {
+          if (!(arr[i]._id.toString() === req.query.id))
+            user.carts.push(arr[i]);
+        }
+
+        await user.save();
+
+        resolve(user);
+        // resolve({errCode:200});
+      } catch (e) {
+        reject(e);
+      }
+    });
+  },
 };
