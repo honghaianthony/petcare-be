@@ -39,4 +39,20 @@ router.delete(
   userController.deleteUser
 );
 
+router.get(
+  '/get-all-carts',
+  passport.authenticate('jwt', { session: false }),
+  userController.getCartForUser
+);
+router.post(
+  '/add-cart',
+  passport.authenticate('jwt', { session: false }),
+  userController.addCartItem
+);
+router.delete(
+  '/delete-cart',
+  passport.authenticate('jwt', { session: false }),
+  userController.deleteCartItem
+);
+
 module.exports = router;
