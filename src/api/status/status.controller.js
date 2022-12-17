@@ -1,4 +1,4 @@
-const statusService = require('./Status.service');
+const statusService = require('./status.service');
 
 module.exports = {
   getAllStatus: async function (req, res) {
