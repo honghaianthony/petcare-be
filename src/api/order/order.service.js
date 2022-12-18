@@ -56,4 +56,14 @@ module.exports = {
       }
     });
   },
+  getOrderUser: async function (req) {
+    return new Promise(async function (resolve, reject) {
+      try {
+        const order = await models.Order.find({ userId: req.user.id });
+        resolve(order);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  },
 };

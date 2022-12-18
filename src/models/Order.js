@@ -6,6 +6,7 @@ const Product = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'products',
   },
+  img: { type: String },
   amount: { type: Number },
   price: { type: Number },
 });
