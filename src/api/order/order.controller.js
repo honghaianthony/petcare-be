@@ -25,4 +25,12 @@ module.exports = {
       res.status(500).json({ message: err.message });
     }
   },
+  getOrderUser: async function (req, res) {
+    try {
+      const order = await orderService.getOrderUser(req);
+      res.status(200).json(order);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  },
 };

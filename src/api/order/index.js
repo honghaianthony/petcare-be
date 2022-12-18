@@ -29,4 +29,10 @@ router.put(
   orderController.updateOrder
 );
 
+router.get(
+  '/get-order-user',
+  passport.authenticate('jwt', { session: false }),
+  orderController.getOrderUser
+);
+
 module.exports = router;
