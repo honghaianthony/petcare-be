@@ -2,6 +2,16 @@ const models = require('../../models');
 const util = require('../../utilities/jwt');
 
 module.exports = {
+  getInfo: async function (req) {
+    return new Promise(async function (resolve, reject) {
+      try {
+        let users = await models.User.find({ _id: req.user.id });
+        resolve(users);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  },
   getAllUsers: async function () {
     return new Promise(async function (resolve, reject) {
       try {
