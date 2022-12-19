@@ -1,6 +1,14 @@
 const userService = require('./user.service.js');
 
 module.exports = {
+  getInfo: async function (req, res, next) {
+    try {
+      var users = await userService.getInfo(req);
+      return res.status(200).json({ data: users, message: 'Successfully' });
+    } catch (e) {
+      return res.status(400).json({ status: 400, message: e.message });
+    }
+  },
   getAllUsers: async function (req, res, next) {
     try {
       var users = await userService.getAllUsers();

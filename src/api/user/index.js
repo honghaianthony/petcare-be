@@ -6,6 +6,11 @@ const { checkUserAdmin } = require('../../auth/checkPermission');
 const userController = require('./user.controller');
 
 router.get(
+  '/get-info',
+  passport.authenticate('jwt', { session: false }),
+  userController.getInfo
+);
+router.get(
   '/get-all-users',
   passport.authenticate('jwt', { session: false }),
   checkUserAdmin,
