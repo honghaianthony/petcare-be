@@ -6,10 +6,10 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const util = require('../../utilities/jwt');
 
 router.post('/google', async (req, res) => {
-  const { tokenId } = req.body;
+  const { credential } = req.body;
 
   const ticket = await client.verifyIdToken({
-    idToken: tokenId,
+    idToken: credential,
     audience: process.env.GOOGLE_CLIENT_ID,
   });
   const { name, email, email_verified, family_name, given_name } =
@@ -51,7 +51,7 @@ router.post('/google', async (req, res) => {
           newUser.save((err, data) => {
             if (err) {
               return res.status(400).json({
-                error: 'Something went wrong...',
+                error: err,
               });
             }
             const jwt = util.issueJWT(data);
