@@ -51,7 +51,7 @@ router.post('/google', async (req, res) => {
           newUser.save((err, data) => {
             if (err) {
               return res.status(400).json({
-                error: 'Something went wrong...',
+                error: err,
               });
             }
             const jwt = util.issueJWT(data);
