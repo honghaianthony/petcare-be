@@ -11,6 +11,12 @@ router.get(
   userController.getInfo
 );
 router.get(
+  '/get-all-customers',
+  passport.authenticate('jwt', { session: false }),
+  checkUserAdmin,
+  userController.getAllCustomers
+);
+router.get(
   '/get-all-users',
   passport.authenticate('jwt', { session: false }),
   checkUserAdmin,

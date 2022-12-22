@@ -12,6 +12,16 @@ module.exports = {
       }
     });
   },
+  getAllCustomers: async function () {
+    return new Promise(async function (resolve, reject) {
+      try {
+        let users = await models.User.find({ role: 1 }).select('-password');
+        resolve(users);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  },
   getAllUsers: async function () {
     return new Promise(async function (resolve, reject) {
       try {

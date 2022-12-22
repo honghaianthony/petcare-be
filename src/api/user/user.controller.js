@@ -9,6 +9,14 @@ module.exports = {
       return res.status(400).json({ status: 400, message: e.message });
     }
   },
+  getAllCustomers: async function (req, res, next) {
+    try {
+      var users = await userService.getAllCustomers();
+      return res.status(200).json({ users: users, message: 'Successfully' });
+    } catch (e) {
+      return res.status(400).json({ status: 400, message: e.message });
+    }
+  },
   getAllUsers: async function (req, res, next) {
     try {
       var users = await userService.getAllUsers();
